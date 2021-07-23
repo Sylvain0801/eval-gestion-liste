@@ -1,0 +1,48 @@
+.add-new-list {
+  display: flex;
+  align-items: center;
+	width: 300px;
+	margin: 20px 0;
+	font-size: 1.5rem;
+	font-weight: bold;
+	color: $color-323232;
+	transition: all .3s ease-in-out;
+	text-transform: uppercase;
+	&:hover {
+		color: $color-555555;
+	}
+}
+.add-new-todo {
+	display: flex;
+  align-items: center;
+	margin: 15px 0;
+	width: 150px;
+	font-size: .9rem;
+	font-weight: bold;
+	transition: all .3s ease-in-out;
+	text-transform: uppercase;
+	&:hover {
+		color: $color-555555;
+	}
+}
+
+.button {
+	box-shadow: 0 3px 6px rgba(0, 0, 0, .3);
+	padding: 5px;
+	text-transform: uppercase;
+	border-radius: 4px;
+	font-size: .8rem;
+	width: 90px;
+	color: $color-f1f1f1;
+	transition: all .3s ease-in-out;
+	&:hover {
+		opacity: .8;
+		transform: scale(1.1);
+	}
+	&.button-red {
+		background-color: $color-red;
+	}
+	&.button-green {
+		background-color: $color-green;
+	}
+}
