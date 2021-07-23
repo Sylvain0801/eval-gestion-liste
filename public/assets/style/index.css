@@ -173,13 +173,6 @@ header .app-name h1 {
   -webkit-box-shadow: 0 3px 6px #555555;
           box-shadow: 0 3px 6px #555555;
   color: #323232;
-  -webkit-transition: all .3s ease-in-out;
-  transition: all .3s ease-in-out;
-}
-
-.card-list:hover {
-  -webkit-transform: scale(1.01);
-          transform: scale(1.01);
 }
 
 .card-list#new-list {
@@ -275,11 +268,15 @@ header .app-name h1 {
           box-shadow: 0 1px 3px #AAAAAA;
   border-radius: 4px;
   background-color: #FFFFFF;
+  position: relative;
 }
 
 .card-todo .card-todo-color {
   width: 100%;
   height: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
 }
@@ -365,7 +362,7 @@ header .app-name h1 {
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 1000;
+  z-index: 90000;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
