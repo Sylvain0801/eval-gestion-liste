@@ -45,12 +45,12 @@ class AppFixtures extends Fixture
             $manager->persist($status);
         }
 
-        for ($i = 1; $i <= 3; $i++) { 
+        for ($i = 1; $i <= 10; $i++) { 
             
             $list = new Liste();
             $list->setTitle("Liste numéro $i");
-
-            for ($j = 1; $j <= 8; $j++) { 
+            $nbTodos = rand(1, 10);
+            for ($j = 1; $j <= $nbTodos; $j++) { 
                 $todo = new Todo();
                 $todo
                     ->setTitle("Tâche numéro $j")

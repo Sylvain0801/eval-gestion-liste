@@ -2,53 +2,67 @@
 
 {% block body %}
 <div class="main-container">
-	<a href="#"  role="button" class="add-new-list">
+	<a href="#" role="button" class="add-new-list">
 		<i class="fa fa-plus-circle"></i>&nbsp;créer une liste
 	</a>
 	<div class="list-container">
 		{% for liste in listes %}
-			<div class="card-list">
-				<form method="post" action="{{ path('liste_edit', {id: liste.id}) }}">
-					<div class="card-list-title">
-						<p class="list-title show">{{ liste.title }}</p>
-						<input type="text" name="input-title" class="input-title" placeholder="Titre de la liste" value="{{ liste.title }}">
+		<div class="card-list">
+			<form method="post" action="{{ path('liste_edit', {id: liste.id}) }}">
+				<div class="card-list-title">
+					<h2 class="list-title show">{{ liste.title }}</h2>
+					<input type="text" name="input-title" class="input-title" placeholder="Titre de la liste"
+						value="{{ liste.title }}">
+					<div class="button-action-group">
+						<a href="#" role="button" class="show fa fa-pencil"></a>
+						<button type="submit" class="fa fa-save"></button>
+						<a href="#" role="button" class="show fa fa-trash" data-target="#modal-delete-liste-{{ liste.id }}"
+							data-toggle="modal"></a>
+					</div>
+				</div>
+			</form>
+			<a href="{{ path('liste_index') }}" class="add-new-todo">
+				<i class="fa fa-plus-circle"></i>&nbsp;créer une tâche
+			</a>
+			<div class="progressbar-group">
+				<p class="progressbar-text">15% réalisé</p>
+				<div class="progressbar-content">
+					<span class="progressbar-progression"></span>
+				</div>
+			</div>
+			<div class="todo-container">
+				{% for todo in liste.todos %}
+				<div class="card-todo">
+					<div class="card-todo-color" style="background-color: {{ todo.color.codeHex }};"></div>
+					<div class="card-todo-title">
+						<h3 class="todo-title">{{ todo.title }}</h3>
 						<div class="button-action-group">
 							<a href="#" role="button" class="show fa fa-pencil"></a>
-							<button type="submit" class="fa fa-save"></button>
-							<a href="#" role="button" class="show fa fa-trash" data-target="#modal-delete-list" data-toggle="modal"></a>
+							<a href="#" role="button" class="show fa fa-trash" data-target="#modal-delete-todo-{{ todo.id }}"
+								data-toggle="modal"></a>
 						</div>
 					</div>
-				</form>
-				<a href="{{ path('liste_index') }}" class="add-new-todo">
-					<i class="fa fa-plus-circle"></i>&nbsp;créer une tâche
-				</a>
-				<div class="todo-container">
-					
-				</div>
-				<!-- Modal confirm delete list -->
-				<div class="modal" id="modal-delete-list" role="dialog">
-					<div class="modal-content">
-						<a href="#" class="modal-close fa fa-close" role="button" data-dismiss="dialog"></a>
-						<div class="modal-header">
-								<i class="fa fa-warning"></i>
-						</div>
-						<div class="modal-body">
-							<p>Cette liste va être définitivement supprimée, cette action est irréversible.</p>
-						</div>
-						<div class="modal-footer">
-							<a href="#" class="button button-green btn-close" role="button" data-dismiss="dialog"><i class="fa fa-close"></i>&nbsp;annuler</a>
-							<a href="{{ path('liste_delete', {id: liste.id}) }}" class="button button-red" role="button"><i class="fa fa-trash"></i>&nbsp;supprimer</a>
-						</div>
+					<p class="card-todo-content">{{ todo.description }}</p>
+					<div class="card-todo-footer">
+						{{ todo.status.name }}<span style="background-color: {{ todo.status.color }};"></span>
 					</div>
 				</div>
+				<!-- Modal confirm delete todo -->
+				{{ include ('include/_modal_delete.html.twig', {id: todo.id, path: 'todo', text: 'tâche', name: todo.title}) }}
 				<!-- End Modal confirm delete list -->
+				{% endfor %}
 			</div>
+			<!-- Modal confirm delete list -->
+			{{ include ('include/_modal_delete.html.twig', {id: liste.id, path: 'liste', text: 'liste', name: liste.title}) }}
+			<!-- End Modal confirm delete list -->
+		</div>
 		{% endfor %}
 		<div class="card-list" id="new-list">
 			<a href="#" class="fa fa-close" role="button" data-dismiss="dialog"></a>
 			<form method="post" action="{{ path('liste_new') }}">
 				<div class="card-list-title">
-					<input type="text" class="input-title show" id="input-title-new-list" name="input-title" placeholder="Titre de la liste" value="Titre de la liste">
+					<input type="text" class="input-title show" id="input-title-new-list" name="input-title"
+						placeholder="Titre de la liste" value="Titre de la liste">
 					<button type="submit" class="show fa fa-save"></button>
 				</div>
 			</form>

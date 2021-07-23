@@ -1,0 +1,15 @@
+<div class="modal" id="{{ 'modal-delete-'~path~'-'~id }}" role="dialog">
+  <div class="modal-content">
+    <a href="#" class="modal-close fa fa-close" role="button" data-dismiss="dialog"></a>
+    <div class="modal-header">
+        <i class="fa fa-warning"></i>
+    </div>
+    <div class="modal-body">
+      <p>La {{ text }} &ldquo;{{ name }}&rdquo; va être définitivement supprimée, cette action est irréversible.</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#" class="button button-green btn-close" role="button" data-dismiss="dialog"><i class="fa fa-close"></i>&nbsp;annuler</a>
+      <a href="{{ path( path~'_delete', {id: id}) }}" class="button button-red" role="button"><i class="fa fa-trash"></i>&nbsp;supprimer</a>
+    </div>
+  </div>
+</div>

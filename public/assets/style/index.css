@@ -18,18 +18,29 @@ a {
   color: inherit;
 }
 
-h1, h2, h3, h4, h5, h6, p, a {
+h1, h2, h3, h4, h5, h6, a {
   font-family: "Open Sans", sans-serif;
   margin: 0;
 }
 
+p {
+  margin: 0;
+}
+
 .main-container {
-  margin: 60px 10% 30px;
   padding: 20px 0;
+  margin: 60px 0 30px 10%;
+}
+
+@media screen and (max-width: 992px) {
+  .main-container {
+    margin: 60px 0 30px 5%;
+  }
 }
 
 header {
   position: fixed;
+  z-index: 10000;
   top: 0;
   width: 100%;
   height: 60px;
@@ -151,6 +162,10 @@ header .app-name h1 {
 .card-list {
   width: 300px;
   min-height: 40px;
+  max-height: 75vh;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   border-radius: 10px;
   padding: 20px;
   margin: 0 20px 20px 0;
@@ -158,6 +173,13 @@ header .app-name h1 {
   -webkit-box-shadow: 0 3px 6px #555555;
           box-shadow: 0 3px 6px #555555;
   color: #323232;
+  -webkit-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+}
+
+.card-list:hover {
+  -webkit-transform: scale(1.01);
+          transform: scale(1.01);
 }
 
 .card-list#new-list {
@@ -189,10 +211,6 @@ header .app-name h1 {
 
 .card-list .card-list-title button {
   border: none;
-  -webkit-appearance: inherit;
-     -moz-appearance: inherit;
-          appearance: inherit;
-  font-size: 1.6rem;
   padding: 0;
   margin-left: 5px;
   cursor: pointer;
@@ -217,14 +235,14 @@ header .app-name h1 {
   color: #555555;
 }
 
-.card-list .card-list-title p {
+.card-list .card-list-title h2 {
   width: calc(100% - 60px);
   font-size: 1.5rem;
   font-weight: bold;
   display: none;
 }
 
-.card-list .card-list-title p.show {
+.card-list .card-list-title h2.show {
   display: block;
 }
 
@@ -243,6 +261,101 @@ header .app-name h1 {
 
 .card-list .card-list-title input.input-title.show {
   display: block;
+}
+
+.todo-container {
+  max-height: calc(75vh - 145px);
+  overflow-y: auto;
+}
+
+.card-todo {
+  padding: 20px 10px 10px;
+  margin-bottom: 10px;
+  -webkit-box-shadow: 0 1px 3px #AAAAAA;
+          box-shadow: 0 1px 3px #AAAAAA;
+  border-radius: 4px;
+  background-color: #FFFFFF;
+}
+
+.card-todo .card-todo-color {
+  width: 100%;
+  height: 10px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.card-todo .card-todo-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.card-todo .card-todo-title h3 {
+  font-size: .9rem;
+}
+
+.card-todo .card-todo-title .button-action-group button {
+  border: none;
+  padding: 0;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.card-todo .card-todo-title .button-action-group button, .card-todo .card-todo-title .button-action-group a {
+  font-size: 1.1rem;
+  margin-left: 5px;
+  color: #323232;
+  -webkit-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+  display: none;
+}
+
+.card-todo .card-todo-title .button-action-group button.show, .card-todo .card-todo-title .button-action-group a.show {
+  display: inline-block;
+}
+
+.card-todo .card-todo-title .button-action-group button:hover, .card-todo .card-todo-title .button-action-group a:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  color: #555555;
+}
+
+.card-todo p.card-todo-content {
+  font-family: "Lato", sans-serif;
+  font-size: .9rem;
+  text-align: justify;
+  color: #888888;
+  max-height: 100px;
+  overflow-y: auto;
+}
+
+.card-todo .card-todo-footer {
+  font-size: .8rem;
+  font-weight: bold;
+  color: #555555;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.card-todo .card-todo-footer span {
+  display: block;
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  margin-left: 5px;
 }
 
 .modal {
@@ -302,5 +415,38 @@ header .app-name h1 {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+}
+
+.progressbar-group {
+  padding: 10px 0 20px;
+}
+
+.progressbar-group .progressbar-text {
+  font-family: "Open Sans", sans-serif;
+  font-size: .8rem;
+  text-align: right;
+  margin-bottom: 5px;
+}
+
+.progressbar-group .progressbar-content {
+  width: 100%;
+  height: 10px;
+  border-radius: 5px;
+  background-color: #FFFFFF;
+  -webkit-box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.15);
+          box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.15);
+  position: relative;
+}
+
+.progressbar-group .progressbar-progression {
+  width: 15%;
+  height: 10px;
+  border-radius: 5px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.15);
+          box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.15);
+  background-color: rgba(35, 140, 42, 0.9);
 }
 /*# sourceMappingURL=index.css.map */

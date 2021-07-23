@@ -15,11 +15,18 @@ a {
 	text-decoration: none;
 	color: inherit;
 }
-h1, h2, h3, h4, h5, h6, p, a {
+h1, h2, h3, h4, h5, h6, a {
 	font-family: $font-secondary;
 	margin: 0;
 }
+
+p {
+	margin: 0;
+}
 .main-container {
-	margin: $navbar-height 10% 30px;
 	padding: 20px 0;
+	margin: $navbar-height 0 30px 10%;
+	@media screen and (max-width: 992px) {
+		margin: $navbar-height 0 30px 5%;
+	}
 }
