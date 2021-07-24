@@ -29,10 +29,11 @@
 .button {
 	box-shadow: 0 3px 6px rgba(0, 0, 0, .3);
 	padding: 5px;
+	text-align: center;
 	text-transform: uppercase;
 	border-radius: 4px;
 	font-size: .8rem;
-	width: 90px;
+	width: 100px;
 	color: $color-f1f1f1;
 	transition: all .3s ease-in-out;
 	&:hover {
@@ -44,5 +45,8 @@
 	}
 	&.button-green {
 		background-color: $color-green;
+	}
+	&.button-dark {
+		background-color: $color-323232;
 	}
 }
