@@ -10,15 +10,10 @@
         <div class="status-group">
           <label>statut</label>
           <div class="button-radio-group">
-            {% if todo is defined %}
-              {% set checked = todo.status.name %}
-            {% else %}
-              {% set checked = 'À venir' %}
-            {% endif %}
             {% for status in statuses %}
               <div class="inline-radio-item">
-                <input type="radio" name="status" id="{{ 'status_'~status.id }}" {{ status.name == checked ? 'checked' : '' }}>
-                <label for="{{ 'status_'~status.id }}" class="todo-custom-input"><span></span></label>
+                <input type="radio" name="{{ 'statuses_'~path~'_'~id }}" id="{{ 'statuses_'~path~'_'~id~'status_'~status.id }}">
+                <label for="{{ 'statuses_'~path~'_'~id~'status_'~status.id }}" class="todo-custom-input"><span></span></label>
                 <span class="status-color" style="background-color: {{ status.color }};"></span>
                 <label>{{ status.name }}</label>
               </div>
@@ -29,8 +24,8 @@
           <label>couleur</label>
           <div class="button-color-group">
             {% for color in colors %}
-              <input type="radio" name="color" id="{{ 'color_'~color.id }}" {{ color.name == 'white' ? 'checked' :'' }}>
-              <label for="{{ 'color_'~color.id }}" class="todo-custom-input" style="background-color: {{ color.codeHex }};">
+              <input type="radio" name="{{ 'colors_'~path~'_'~id }}" id="{{ 'colors_'~path~'_'~id~'color_'~color.id }}" {{ color.name == 'white' ? 'checked' :'' }}>
+              <label for="{{ 'colors_'~path~'_'~id~'color_'~color.id }}" class="todo-custom-input" style="background-color: {{ color.codeHex }};">
                 <div class="headband" style="background-color: {{ color.codeHex }};">
                   <h1><i class="bi bi-clipboard-data"></i>&nbsp;repositionnable</h1>
                 </div>

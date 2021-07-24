@@ -68,10 +68,11 @@
 								</div>
 							</div>
 							<!-- Modal edit todo -->
-								{{ include ('include/_form_todo.html.twig', {id: liste.id, todo: todo, path: 'edit', colors: colors, statuses: statuses}) }}
+								{{ include ('include/_form_todo.html.twig', {id: todo.id, todo: todo, path: 'edit', colors: colors, statuses: statuses}) }}
 							<!-- End modal edit todo -->
 							<!-- Modal confirm delete todo -->
 							{{ include ('include/_modal_delete.html.twig', {id: todo.id, path: 'todo', text: 'tâche', name: todo.title}) }}
+							<!-- End modal confirm delete todo -->
 						{% endfor %}
 					</div>
 					<!-- Modal confirm delete list -->
