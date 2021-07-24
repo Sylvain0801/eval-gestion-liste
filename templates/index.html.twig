@@ -6,6 +6,16 @@
 		<i class="fa fa-plus-circle"></i>&nbsp;créer une liste
 	</a>
 	<div class="list-container">
+		<div class="card-list" id="new-list">
+			<a href="#" class="fa fa-close" role="button" data-dismiss="dialog"></a>
+			<form method="post" action="{{ path('liste_new') }}">
+				<div class="card-list-title">
+					<input type="text" class="input-title show" id="input-title-new-list" name="input-title"
+						placeholder="Titre de la liste" value="Titre de la liste">
+					<button type="submit" class="show fa fa-save"></button>
+				</div>
+			</form>
+		</div>
 		{% for liste in listes %}
 		<div class="card-list">
 			<form method="post" action="{{ path('liste_edit', {id: liste.id}) }}">
@@ -25,9 +35,20 @@
 				<i class="fa fa-plus-circle"></i>&nbsp;créer une tâche
 			</a>
 			<div class="progressbar-group">
-				<p class="progressbar-text">15% réalisé</p>
+				{% set finished = 0 %}
+				{% for todo in liste.todos %}
+					{% if todo.status.name == 'Terminé' %}
+						{% set finished = finished + 1 %}
+					{% endif %}
+				{% endfor %}
+				{% if liste.todos|length > 0 %}
+					{% set progression = finished / (liste.todos|length) * 100 %}	
+				{% else %}
+					{% set progression = 0 %}		
+				{% endif %}
+				<p class="progressbar-text">{{ progression|format_number({rounding_mode: 'floor', fraction_digit: 0}) }}% réalisé</p>
 				<div class="progressbar-content">
-					<span class="progressbar-progression"></span>
+					<span class="progressbar-progression" style="width: {{ progression~'%' }}"></span>
 				</div>
 			</div>
 			<div class="todo-container">
@@ -56,16 +77,6 @@
 			<!-- End Modal confirm delete list -->
 		</div>
 		{% endfor %}
-		<div class="card-list" id="new-list">
-			<a href="#" class="fa fa-close" role="button" data-dismiss="dialog"></a>
-			<form method="post" action="{{ path('liste_new') }}">
-				<div class="card-list-title">
-					<input type="text" class="input-title show" id="input-title-new-list" name="input-title"
-						placeholder="Titre de la liste" value="Titre de la liste">
-					<button type="submit" class="show fa fa-save"></button>
-				</div>
-			</form>
-		</div>
 	</div>
 </div>
 {% endblock %}

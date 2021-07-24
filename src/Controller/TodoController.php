@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Color;
+use App\Entity\Status;
 use App\Entity\Todo;
 use App\Form\TodoType;
 use App\Repository\TodoRepository;
@@ -19,6 +21,8 @@ class TodoController extends AbstractController
      */
     public function new(Request $request): Response
     {
+        $colors = $this->getDoctrine()->getRepository(Color::class)->findAll();
+        $statuses = $this->getDoctrine()->getRepository(Status::class)->findAll();
         $todo = new Todo();
         $form = $this->createForm(TodoType::class, $todo);
         $form->handleRequest($request);
@@ -28,12 +32,13 @@ class TodoController extends AbstractController
             $entityManager->persist($todo);
             $entityManager->flush();
 
-            return $this->redirectToRoute('todo_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('liste_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('todo/new.html.twig', [
-            'todo' => $todo,
-            'form' => $form,
+        return $this->render('form_todo.html.twig', [
+            'form' => $form->createView(),
+            'colors' => $colors,
+            'statuses' => $statuses
         ]);
     }
 
