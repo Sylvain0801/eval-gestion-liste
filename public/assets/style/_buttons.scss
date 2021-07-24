@@ -26,15 +26,19 @@
 	}
 }
 
-.button {
+.button, button {
+	font-family: 'Open Sans';
+  border: none;
 	box-shadow: 0 3px 6px rgba(0, 0, 0, .3);
-	padding: 5px;
+	padding: 5px 10px;
 	text-align: center;
 	text-transform: uppercase;
 	border-radius: 4px;
 	font-size: .8rem;
-	width: 100px;
 	color: $color-f1f1f1;
+	font-family: 'Open Sans';
+  border: none;
+	cursor: pointer;
 	transition: all .3s ease-in-out;
 	&:hover {
 		opacity: .8;

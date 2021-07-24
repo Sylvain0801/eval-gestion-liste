@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Color;
+use App\Entity\Liste;
 use App\Entity\Status;
 use App\Entity\Todo;
 use App\Form\TodoType;
@@ -17,49 +18,65 @@ use Symfony\Component\Routing\Annotation\Route;
 class TodoController extends AbstractController
 {
     /**
-     * @Route("todo/new", name="todo_new", methods={"GET","POST"})
+     * @Route("todo/new/{id}", name="todo_new")
      */
-    public function new(Request $request): Response
+    public function new($id, Request $request): Response
     {
-        $colors = $this->getDoctrine()->getRepository(Color::class)->findAll();
-        $statuses = $this->getDoctrine()->getRepository(Status::class)->findAll();
-        $todo = new Todo();
-        $form = $this->createForm(TodoType::class, $todo);
-        $form->handleRequest($request);
+        $title = $request->get("new_todo_title_$id");
+        $description = $request->get("new_todo_description_$id");
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($todo);
-            $entityManager->flush();
-
+        if (empty($title) || empty($description)) {
             return $this->redirectToRoute('liste_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('form_todo.html.twig', [
-            'form' => $form->createView(),
-            'colors' => $colors,
-            'statuses' => $statuses
-        ]);
+        $liste = $this->getDoctrine()->getRepository(Liste::class)->findOneBy(['id' => $id]);
+        $status = $this->getDoctrine()->getRepository(Status::class)->findOneBy(['id' => $request->get("statuses_new_$id")]);
+        $color = $this->getDoctrine()->getRepository(Color::class)->findOneBy(['id' => $request->get("colors_new_$id")]);
+
+        $todo = new Todo();
+        $todo
+            ->setTitle($title)
+            ->setDescription($description)
+            ->setListe($liste)
+            ->setStatus($status)
+            ->setColor($color);
+        
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($todo);
+        $em->flush();
+
+        return $this->redirectToRoute('liste_index', [], Response::HTTP_SEE_OTHER);
+        
     }
 
     /**
-     * @Route("todo/{id}/edit", name="todo_edit", methods={"GET","POST"})
+     * @Route("todo/{id}/edit", name="todo_edit")
      */
     public function edit(Request $request, Todo $todo): Response
     {
-        $form = $this->createForm(TodoType::class, $todo);
-        $form->handleRequest($request);
+        $id = $todo->getId();
+        $title = $request->get("edit_todo_title_$id");
+        $description = $request->get("edit_todo_description_$id");
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('todo_index', [], Response::HTTP_SEE_OTHER);
+        if (empty($title) || empty($description)) {
+            return $this->redirectToRoute('liste_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('todo/edit.html.twig', [
-            'todo' => $todo,
-            'form' => $form,
-        ]);
+        $liste = $this->getDoctrine()->getRepository(Liste::class)->findOneBy(['id' => $id]);
+        $status = $this->getDoctrine()->getRepository(Status::class)->findOneBy(['id' => $request->get("statuses_edit_$id")]);
+        $color = $this->getDoctrine()->getRepository(Color::class)->findOneBy(['id' => $request->get("colors_edit_$id")]);
+
+        $todo
+            ->setTitle($title)
+            ->setDescription($description)
+            ->setStatus($status)
+            ->setColor($color);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($todo);
+        $em->flush();
+
+        return $this->redirectToRoute('liste_index', [], Response::HTTP_SEE_OTHER);
     }
 
     /**

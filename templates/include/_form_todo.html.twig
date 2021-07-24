@@ -1,19 +1,24 @@
 <div class="modal" id="{{ 'modal-'~path~'-todo-'~id }}" role="dialog">
   <div class="todo-form">
     <a href="#" class="modal-close fa fa-close" role="button" data-dismiss="dialog"></a>
-    <form action="" method="post">
+    <form action="{{ path('todo_'~path, {id: id}) }}" method="post">
       <label for="todo-title">titre</label>
-      <input type="text" name="" id="todo-title" class="todo-form-control" placeholder="Entrez un titre..." value="{{ todo is defined ? todo.title : '' }}">
+      <input type="text" name="{{ path~'_todo_title_'~id }}" id="{{ path~'_todo_title_'~id }}" class="todo-form-control" placeholder="Entrez un titre..." value="{{ todo is defined ? todo.title : '' }}" required>
       <label for="todo-description">description</label>
-      <textarea name="" id="todo-description" class="todo-form-control" placeholder="Ecrivez une description de la nouvelle tâche...">{{ todo is defined ? todo.description : '' }}</textarea>
+      <textarea name="{{ path~'_todo_description_'~id }}" id="{{ path~'_todo_description_'~id }}" class="todo-form-control" placeholder="Ecrivez une description de la nouvelle tâche..." required>{{ todo is defined ? todo.description : '' }}</textarea>
       <div class="status-color-group">
         <div class="status-group">
           <label>statut</label>
           <div class="button-radio-group">
+            {% if todo is defined %}
+              {% set status_checked = todo.status.name %}
+            {% else %}
+              {% set status_checked = 'À venir' %}
+            {% endif %}
             {% for status in statuses %}
               <div class="inline-radio-item">
-                <input type="radio" name="{{ 'statuses_'~path~'_'~id }}" id="{{ 'statuses_'~path~'_'~id~'status_'~status.id }}">
-                <label for="{{ 'statuses_'~path~'_'~id~'status_'~status.id }}" class="todo-custom-input"><span></span></label>
+                <input type="radio" name="{{ 'statuses_'~path~'_'~id }}" id="{{ 'statuses_'~path~'_'~id~'_status_'~status.id }}" value="{{ status.id }}" {{ status.name == status_checked ? 'checked' : '' }}>
+                <label for="{{ 'statuses_'~path~'_'~id~'_status_'~status.id }}" class="todo-custom-input"><span></span></label>
                 <span class="status-color" style="background-color: {{ status.color }};"></span>
                 <label>{{ status.name }}</label>
               </div>
@@ -23,9 +28,14 @@
         <div class="color-group">
           <label>couleur</label>
           <div class="button-color-group">
+            {% if todo is defined %}
+              {% set color_checked = todo.color.name %}
+            {% else %}
+              {% set color_checked = 'white' %}
+            {% endif %}
             {% for color in colors %}
-              <input type="radio" name="{{ 'colors_'~path~'_'~id }}" id="{{ 'colors_'~path~'_'~id~'color_'~color.id }}" {{ color.name == 'white' ? 'checked' :'' }}>
-              <label for="{{ 'colors_'~path~'_'~id~'color_'~color.id }}" class="todo-custom-input" style="background-color: {{ color.codeHex }};">
+              <input type="radio" name="{{ 'colors_'~path~'_'~id }}" id="{{ 'colors_'~path~'_'~id~'_color_'~color.id }}" value="{{ color.id }}" {{ color.name == color_checked ? 'checked' :'' }}>
+              <label for="{{ 'colors_'~path~'_'~id~'_color_'~color.id }}" class="todo-custom-input" style="background-color: {{ color.codeHex }};">
                 <div class="headband" style="background-color: {{ color.codeHex }};">
                   <h1><i class="bi bi-clipboard-data"></i>&nbsp;repositionnable</h1>
                 </div>
@@ -36,7 +46,7 @@
       </div>
       <div class="modal-footer">
         <a href="#" class="button button-green btn-close" role="button" data-dismiss="dialog"><i class="fa fa-close"></i>&nbsp;annuler</a>
-        <a href="#" class="button button-dark" role="button"><i class="fa fa-save"></i>&nbsp;enregistrer</a>
+        <button type="submit" class="button button-dark"><i class="fa fa-save"></i>&nbsp;enregistrer</button>
       </div>
     </form>
   </div>

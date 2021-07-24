@@ -120,35 +120,39 @@ header .app-name h1 {
   color: #555555;
 }
 
-.button {
+.button, button {
+  font-family: 'Open Sans';
+  border: none;
   -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
           box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
-  padding: 5px;
+  padding: 5px 10px;
   text-align: center;
   text-transform: uppercase;
   border-radius: 4px;
   font-size: .8rem;
-  width: 100px;
   color: #F1F1F1;
+  font-family: 'Open Sans';
+  border: none;
+  cursor: pointer;
   -webkit-transition: all .3s ease-in-out;
   transition: all .3s ease-in-out;
 }
 
-.button:hover {
+.button:hover, button:hover {
   opacity: .8;
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
 }
 
-.button.button-red {
+.button.button-red, button.button-red {
   background-color: #BF0B3B;
 }
 
-.button.button-green {
+.button.button-green, button.button-green {
   background-color: #238C2A;
 }
 
-.button.button-dark {
+.button.button-dark, button.button-dark {
   background-color: #323232;
 }
 
@@ -501,6 +505,20 @@ header .app-name h1 {
   margin: 5px auto 20px;
   display: block;
   color: #555555;
+}
+
+.todo-form input[type="text"]:focus:invalid,
+.todo-form textarea:focus:invalid {
+  border: 2px solid #BF0B3B;
+  -webkit-box-shadow: 0 0 6px #BF0B3B;
+          box-shadow: 0 0 6px #BF0B3B;
+}
+
+.todo-form input[type="text"]:focus:valid,
+.todo-form textarea:focus:valid {
+  border: 2px solid #238C2A;
+  -webkit-box-shadow: 0 0 6px #238C2A;
+          box-shadow: 0 0 6px #238C2A;
 }
 
 .todo-form input[type="text"] {

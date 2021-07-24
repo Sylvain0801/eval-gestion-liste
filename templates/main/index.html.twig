@@ -36,11 +36,13 @@
 					<!-- end modal add new todo -->
 					<div class="progressbar-group">
 						{% set finished = 0 %}
-						{% for todo in liste.todos %}
-							{% if todo.status.name == 'Terminé' %}
-								{% set finished = finished + 1 %}
-							{% endif %}
-						{% endfor %}
+						{% if liste.todos|length > 0 %}
+							{% for todo in liste.todos %}
+								{% if todo.status.name == 'Terminé' %}
+									{% set finished = finished + 1 %}
+								{% endif %}
+							{% endfor %}
+						{% endif %}
 						{% if liste.todos|length > 0 %}
 							{% set progression = finished / (liste.todos|length) * 100 %}
 						{% else %}
