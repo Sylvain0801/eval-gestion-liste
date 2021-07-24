@@ -3,8 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Liste;
-use App\Form\ListeType;
+use App\Repository\ColorRepository;
 use App\Repository\ListeRepository;
+use App\Repository\StatusRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,10 +18,12 @@ class ListeController extends AbstractController
     /**
      * @Route("/", name="liste_index", methods={"GET"})
      */
-    public function index(ListeRepository $listeRepository): Response
+    public function index(ListeRepository $listeRepository, StatusRepository $statusRepository, ColorRepository $colorRepository): Response
     {
-        return $this->render('index.html.twig', [
+        return $this->render('main/index.html.twig', [
             'listes' => $listeRepository->findAll(),
+            'statuses' => $statusRepository->findAll(),
+            'colors' => $colorRepository->findAll(),
         ]);
     }
 

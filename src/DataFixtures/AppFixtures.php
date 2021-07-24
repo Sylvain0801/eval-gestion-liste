@@ -18,7 +18,8 @@ class AppFixtures extends Fixture
             'green' => '#238C2A',
             'blue' => '#1835D9',
             'pink' => '#D50DD9',
-            'red' => '#BF0B3B'
+            'red' => '#BF0B3B',
+            'white' => '#FFFFFF'
         ];
         $index = 0;
         foreach ($colors as $key => $value) {
