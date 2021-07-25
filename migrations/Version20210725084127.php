@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20210723101437 extends AbstractMigration
+final class Version20210725084127 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -21,19 +21,22 @@ final class Version20210723101437 extends AbstractMigration
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('CREATE TABLE color (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(32) NOT NULL, code_hex VARCHAR(7) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE liste (id INT AUTO_INCREMENT NOT NULL, title VARCHAR(255) NOT NULL, updated_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', created_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE status (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(45) NOT NULL, color VARCHAR(7) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE todo (id INT AUTO_INCREMENT NOT NULL, color_id INT DEFAULT NULL, status_id INT DEFAULT NULL, liste_id INT NOT NULL, title VARCHAR(128) NOT NULL, description LONGTEXT NOT NULL, INDEX IDX_5A0EB6A07ADA1FB5 (color_id), INDEX IDX_5A0EB6A06BF700BD (status_id), INDEX IDX_5A0EB6A0E85441D8 (liste_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('ALTER TABLE todo ADD CONSTRAINT FK_5A0EB6A07ADA1FB5 FOREIGN KEY (color_id) REFERENCES color (id)');
         $this->addSql('ALTER TABLE todo ADD CONSTRAINT FK_5A0EB6A06BF700BD FOREIGN KEY (status_id) REFERENCES status (id)');
-        $this->addSql('ALTER TABLE todo ADD CONSTRAINT FK_5A0EB6A0E85441D8 FOREIGN KEY (liste_id) REFERENCES liste (id)');
+        $this->addSql('ALTER TABLE todo ADD CONSTRAINT FK_5A0EB6A0E85441D8 FOREIGN KEY (liste_id) REFERENCES liste (id) ON DELETE CASCADE');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
         $this->addSql('ALTER TABLE todo DROP FOREIGN KEY FK_5A0EB6A07ADA1FB5');
+        $this->addSql('ALTER TABLE todo DROP FOREIGN KEY FK_5A0EB6A0E85441D8');
         $this->addSql('ALTER TABLE todo DROP FOREIGN KEY FK_5A0EB6A06BF700BD');
         $this->addSql('DROP TABLE color');
+        $this->addSql('DROP TABLE liste');
         $this->addSql('DROP TABLE status');
         $this->addSql('DROP TABLE todo');
     }

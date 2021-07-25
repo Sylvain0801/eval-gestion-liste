@@ -1,10 +1,11 @@
 @import 'variables';
 @import 'mixins';
 @import 'settings';
-@import 'header';
-@import 'buttons';
-@import 'card';
-@import 'modal';
-@import 'progression';
-@import 'form_todo';
+@import 'components/header';
+@import 'components/buttons';
+@import 'components/card';
+@import 'components/modal';
+@import 'components/progression';
+@import 'components/form_todo';
+@import 'components/alert';
 

@@ -507,18 +507,11 @@ header .app-name h1 {
   color: #555555;
 }
 
-.todo-form input[type="text"]:focus:invalid,
-.todo-form textarea:focus:invalid {
-  border: 2px solid #BF0B3B;
-  -webkit-box-shadow: 0 0 6px #BF0B3B;
-          box-shadow: 0 0 6px #BF0B3B;
-}
-
-.todo-form input[type="text"]:focus:valid,
-.todo-form textarea:focus:valid {
-  border: 2px solid #238C2A;
-  -webkit-box-shadow: 0 0 6px #238C2A;
-          box-shadow: 0 0 6px #238C2A;
+.todo-form input[type="text"]:focus,
+.todo-form textarea:focus {
+  border: 2px solid #1835D9;
+  -webkit-box-shadow: 0 0 6px #1835D9;
+          box-shadow: 0 0 6px #1835D9;
 }
 
 .todo-form input[type="text"] {
@@ -681,5 +674,81 @@ header .app-name h1 {
 .todo-form .status-color-group .color-group .button-color-group input[type="radio"]:checked + label .headband {
   opacity: 1;
   visibility: visible;
+}
+
+.message-alert {
+  top: calc(-60px);
+  position: absolute;
+  z-index: 2;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 300px;
+  color: #F1F1F1;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 3px 6px #000000;
+          box-shadow: 0 3px 6px #000000;
+  padding: 10px;
+  opacity: 1;
+  visibility: visible;
+  -webkit-animation: show-alert 1.5s ease 1 forwards, hidde-alert 1s 6s ease forwards;
+          animation: show-alert 1.5s ease 1 forwards, hidde-alert 1s 6s ease forwards;
+}
+
+.message-alert span {
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  margin-right: 10px;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.message-alert p {
+  font-family: 'Open Sans';
+  font-size: .8rem;
+  font-weight: 500;
+  max-width: 75%;
+}
+
+.message-alert-success {
+  background-color: #238C2A;
+}
+
+@-webkit-keyframes show-alert {
+  to {
+    top: 80px;
+  }
+}
+
+@keyframes show-alert {
+  to {
+    top: 80px;
+  }
+}
+
+@-webkit-keyframes hidde-alert {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes hidde-alert {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
 }
 /*# sourceMappingURL=index.css.map */

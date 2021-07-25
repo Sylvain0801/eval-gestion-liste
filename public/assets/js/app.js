@@ -22,9 +22,7 @@ window.onload = () => {
     });
   }
 
-  const closeNewList = document.querySelector(
-    "#new-list [data-dismiss=dialog]"
-  );
+  const closeNewList = document.querySelector("#new-list [data-dismiss=dialog]");
   // Ferme la fenêtre pour créer une nouvelle liste
   closeNewList.addEventListener("click", (e) => {
     e.preventDefault();
@@ -42,7 +40,6 @@ window.onload = () => {
       
       // On récupère la bonne modale
       let modal = document.querySelector(target);
-      console.log(modal);
 
       // On affiche la modale
       setTimeout(() => modal.classList.add("show"), 200);
@@ -66,20 +63,12 @@ window.onload = () => {
       });
     });
   }
-
-  // Button radio status
-  const btnRadioStatus = document.querySelectorAll('span.custom-input-radio')
-  for (const btnRadio of btnRadioStatus) {
-    btnRadio.addEventListener('click', function(e) {
-      e.stopPropagation()
-      for (const btnRadio of btnRadioStatus) {
-        if (btnRadio != this) {
-          btnRadio.classList.remove('checked')
-          document.getElementById('todo_status_' + btnRadio.dataset.id).removeAttribute('checked')
-        }
-      }
-      this.classList.add('checked')
-      document.getElementById('todo_status_' + this.dataset.id).setAttribute('checked', 'checked')
-    })
-  }
+  // Ferme les messages alert
+  const alertClose = document.querySelectorAll("[data-dismiss=alert]");
+  for (let close of alertClose) {
+    close.addEventListener("click", function(e) {
+        e.preventDefault()
+        this.parentNode.style.display = 'none';
+      });
+    }
 };

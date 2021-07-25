@@ -32,13 +32,9 @@
     margin: 5px auto 20px;
     display: block;
     color: $color-555555;
-    &:focus:invalid {
-      border: 2px solid $color-red;
-      box-shadow: 0 0 6px $color-red;
-    }
-    &:focus:valid {
-      border: 2px solid $color-green;
-      box-shadow: 0 0 6px $color-green;
+    &:focus {
+      border: 2px solid $color-blue;
+      box-shadow: 0 0 6px $color-blue;
     }
   }
   input[type="text"] {

@@ -6,6 +6,7 @@ use App\Entity\Color;
 use App\Entity\Status;
 use App\Entity\Liste;
 use App\Entity\Todo;
+use DateTimeImmutable;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -33,8 +34,8 @@ class AppFixtures extends Fixture
         $statuses = [
             'À venir' => '#1835D9',
             'En cours' => '#F2B90C',
-            'Terminé' => '#238C2A',
-            'En retard' => '#BF0B3B'
+            'En retard' => '#BF0B3B',
+            'Terminé' => '#238C2A'
         ];
         $index = 0;
         foreach ($statuses as $key => $value) {
@@ -50,6 +51,7 @@ class AppFixtures extends Fixture
             
             $list = new Liste();
             $list->setTitle("Liste numéro $i");
+            $list->setUpdated_at(new DateTimeImmutable());
             $nbTodos = rand(1, 10);
             for ($j = 1; $j <= $nbTodos; $j++) { 
                 $todo = new Todo();

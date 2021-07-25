@@ -2,6 +2,13 @@
 
 {% block body %}
 	<div class="main-container">
+		{% for message in app.flashes('message_alert') %}
+			<div class="message-alert message-alert-success" role="alert">
+				<span><i class="fa fa-check"></i></span>
+				<p>{{ message|raw }}</p>
+				<a href="#" class="modal-close fa fa-close" role="button" data-dismiss="alert"></a>
+			</div>
+    {% endfor %}
 		<a href="#" role="button" class="add-new-list">
 			<i class="fa fa-plus-circle"></i>&nbsp;créer une liste
 		</a>

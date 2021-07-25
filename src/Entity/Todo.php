@@ -39,7 +39,8 @@ class Todo
 
     /**
      * @ORM\ManyToOne(targetEntity=Liste::class, inversedBy="todos")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
+
      */
     private $liste;
 
