@@ -1,4 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Indie+Flower&family=Lato&family=Open+Sans");
+:root {
+  --color-555555: #555555;
+}
+
 body {
   margin: 0;
   -webkit-box-sizing: border-box;
@@ -97,7 +101,7 @@ header .app-name h1 {
 }
 
 .add-new-list:hover {
-  color: #555555;
+  color: var(--color-555555);
 }
 
 .add-new-todo {
@@ -117,7 +121,7 @@ header .app-name h1 {
 }
 
 .add-new-todo:hover {
-  color: #555555;
+  color: var(--color-555555);
 }
 
 .button, button {
@@ -179,8 +183,8 @@ header .app-name h1 {
   padding: 20px;
   margin: 0 20px 20px 0;
   background-color: #F1F1F1;
-  -webkit-box-shadow: 0 3px 6px #555555;
-          box-shadow: 0 3px 6px #555555;
+  -webkit-box-shadow: 0 3px 6px var(--color-555555);
+          box-shadow: 0 3px 6px var(--color-555555);
   color: #323232;
 }
 
@@ -234,7 +238,7 @@ header .app-name h1 {
 .card-list .card-list-title button:hover, .card-list .card-list-title a:hover {
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
-  color: #555555;
+  color: var(--color-555555);
 }
 
 .card-list .card-list-title h2 {
@@ -329,7 +333,7 @@ header .app-name h1 {
 .card-todo .card-todo-title .button-action-group button:hover, .card-todo .card-todo-title .button-action-group a:hover {
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
-  color: #555555;
+  color: var(--color-555555);
 }
 
 .card-todo p.card-todo-content {
@@ -344,7 +348,7 @@ header .app-name h1 {
 .card-todo .card-todo-footer {
   font-size: .8rem;
   font-weight: bold;
-  color: #555555;
+  color: var(--color-555555);
   margin-top: 5px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -402,8 +406,8 @@ header .app-name h1 {
   padding: 20px;
   border-radius: 10px;
   background-color: #F1F1F1;
-  -webkit-box-shadow: 0 3px 6px #555555;
-          box-shadow: 0 3px 6px #555555;
+  -webkit-box-shadow: 0 3px 6px var(--color-555555);
+          box-shadow: 0 3px 6px var(--color-555555);
   color: #323232;
 }
 
@@ -471,9 +475,9 @@ header .app-name h1 {
   padding: 80px 40px 40px;
   border-radius: 10px;
   background-color: #F1F1F1;
-  -webkit-box-shadow: 0 3px 6px #555555;
-          box-shadow: 0 3px 6px #555555;
-  color: #555555;
+  -webkit-box-shadow: 0 3px 6px var(--color-555555);
+          box-shadow: 0 3px 6px var(--color-555555);
+  color: var(--color-555555);
 }
 
 .todo-form .todo-form-control {
@@ -504,7 +508,7 @@ header .app-name h1 {
   display: none;
   margin: 5px auto 20px;
   display: block;
-  color: #555555;
+  color: var(--color-555555);
 }
 
 .todo-form input[type="text"]:focus,
@@ -593,7 +597,7 @@ header .app-name h1 {
 .todo-form .status-color-group .status-group .button-radio-group .inline-radio-item label.todo-custom-input span:after {
   content: "";
   position: absolute;
-  background-color: #555555;
+  background-color: var(--color-555555);
   border-radius: 50%;
   height: 8px;
   width: 8px;
@@ -616,8 +620,8 @@ header .app-name h1 {
   margin-right: 5px;
 }
 
-.todo-form .status-color-group .status-group .button-radio-group .inline-radio-item span.status-color label {
-  font-size: .8rem;
+.todo-form .status-color-group .status-group .button-radio-group .inline-radio-item span.status-color + label {
+  font-size: .9rem;
 }
 
 .todo-form .status-color-group .status-group .button-radio-group .inline-radio-item input[type="radio"]:checked + label span:after {

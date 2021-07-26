@@ -5,8 +5,8 @@
   padding: 80px 40px 40px;
   border-radius: 10px;
   background-color: $color-f1f1f1;
-  box-shadow: 0 3px 6px $color-555555;
-  color: $color-555555;
+  box-shadow: 0 3px 6px var(--color-555555);
+  color: var(--color-555555);
   .todo-form-control {
     display: block;
   }
@@ -31,7 +31,7 @@
     display: none;
     margin: 5px auto 20px;
     display: block;
-    color: $color-555555;
+    color: var(--color-555555);
     &:focus {
       border: 2px solid $color-blue;
       box-shadow: 0 0 6px $color-blue;
@@ -78,7 +78,7 @@
               &:after {
                 content: "";
                 position: absolute;
-                background-color: $color-555555;
+                background-color: var(--color-555555);
                 border-radius: 50%;
                 height: 8px;
                 width: 8px;
@@ -97,8 +97,8 @@
             box-shadow: 0 3px 6px rgba($color-black, 0.3);
             margin-left: 10px;
             margin-right: 5px;
-            label {
-              font-size: .8rem;
+            + label {
+              font-size: .9rem;
             }
           }
           input[type="radio"]:checked + label span:after {

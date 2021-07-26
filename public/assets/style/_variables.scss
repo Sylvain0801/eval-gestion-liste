@@ -8,16 +8,19 @@ $font-primary: 'Lato', sans-serif;
 $font-secondary: 'Open Sans', sans-serif;
 $font-app-name: 'Indie Flower', cursive;
 
-// Colors
-$color-555555: #555555;
+// Colors`
+:root {
+  --color-555555: #555555;
+}
+$color-323232: #323232;
 $color-888888: #888888;
 $color-AAAAAA: #AAAAAA;
 $color-f1f1f1: #F1F1F1;
 $color-efefef: #EFEFEF;
 $color-f2f2f2: #F2F2F2;
+
 $color-white: #FFFFFF;
 $color-black: #000000;
-$color-323232: #323232;
 $color-yellow: #F2B90C;
 $color-green: #238C2A;
 $color-blue: #1835D9;
