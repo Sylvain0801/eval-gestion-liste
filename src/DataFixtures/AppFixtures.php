@@ -47,7 +47,7 @@ class AppFixtures extends Fixture
             $manager->persist($status);
         }
 
-        for ($i = 1; $i <= 10; $i++) { 
+        for ($i = 1; $i <= 8; $i++) { 
             
             $list = new Liste();
             $list->setTitle("Liste numéro $i");

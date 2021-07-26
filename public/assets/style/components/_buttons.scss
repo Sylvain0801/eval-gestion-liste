@@ -5,11 +5,11 @@
 	margin: 20px 0;
 	font-size: 1.5rem;
 	font-weight: bold;
-	color: $color-323232;
+	color: var(--color-primary-writing);
 	transition: all .3s ease-in-out;
 	text-transform: uppercase;
 	&:hover {
-		color: var(--color-555555);
+		color: var(--color-writing-hover);
 	}
 }
 .add-new-todo {
@@ -18,11 +18,12 @@
 	margin: 15px 0;
 	width: 150px;
 	font-size: .9rem;
-	font-weight: bold;
+	font-weight: 500;
+	color: var(--color-primary-writing);
 	transition: all .3s ease-in-out;
 	text-transform: uppercase;
 	&:hover {
-		color: var(--color-555555);
+		color: var(--color-writing-hover);
 	}
 }
 
@@ -36,7 +37,7 @@
 	border-radius: 4px;
 	font-size: .8rem;
 	color: $color-f1f1f1;
-	font-family: 'Open Sans';
+	font-family: $font-secondary;
   border: none;
 	cursor: pointer;
 	transition: all .3s ease-in-out;

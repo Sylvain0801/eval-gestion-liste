@@ -71,4 +71,44 @@ window.onload = () => {
         this.parentNode.style.display = 'none';
       });
     }
+  
+  // Darkmode
+  const darkMode = () => {
+    document.documentElement.style.setProperty('--color-primary-bg', '#323232')
+    document.documentElement.style.setProperty('--color-secondary-bg', '#555555')
+    document.documentElement.style.setProperty('--color-primary-writing', '#F1F1F1')
+    document.documentElement.style.setProperty('--color-medium-writing', '#CCCCCC')
+    document.documentElement.style.setProperty('--color-writing-hover', '#CCCCCC')
+    document.documentElement.style.setProperty('--color-todo-border', '#888888')
+    document.documentElement.style.setProperty('--color-input-bg', '#CCCCCC')
+  }
+  const ligthMode = () => {
+    document.documentElement.style.setProperty('--color-primary-bg', 'white')
+    document.documentElement.style.setProperty('--color-secondary-bg', '#F1F1F1')
+    document.documentElement.style.setProperty('--color-primary-writing', '#323232')
+    document.documentElement.style.setProperty('--color-medium-writing', '#555555')
+    document.documentElement.style.setProperty('--color-writing-hover', '#555555')
+    document.documentElement.style.setProperty('--color-todo-border', '#CCCCCC')
+    document.documentElement.style.setProperty('--color-input-bg', '#FFFFFF')
+  }
+  const toggleDarkMode = document.getElementById('ball-darkmode')
+  const theme = () => {
+    if (localStorage.getItem('theme')) {
+      darkMode()
+      toggleDarkMode.setAttribute('checked', 'checked')
+    } else {
+      ligthMode()
+      toggleDarkMode.removeAttribute('checked')
+    }
+  }
+  toggleDarkMode.addEventListener('click', function() {
+    if (this.checked) {
+      localStorage.setItem('theme', 'darkmode')
+      darkMode()
+    } else {
+      localStorage.removeItem('theme')
+      ligthMode()
+    }
+  }) 
+  theme()
 };

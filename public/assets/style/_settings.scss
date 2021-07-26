@@ -5,6 +5,7 @@ body {
 	font-family: $font-primary;
 	font-size: 16px;
 	min-height: 100vh;
+	background-color: var(--color-primary-bg);
 }
 ul {
 	list-style: none;
@@ -29,4 +30,11 @@ p {
 	@media screen and (max-width: 992px) {
 		margin: $navbar-height 0 30px 5%;
 	}
+}
+
+.toggle-darkmode-newlist-group {
+	width: 320px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }

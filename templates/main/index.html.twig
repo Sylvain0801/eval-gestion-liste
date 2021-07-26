@@ -9,16 +9,38 @@
 				<a href="#" class="modal-close fa fa-close" role="button" data-dismiss="alert"></a>
 			</div>
     {% endfor %}
-		<a href="#" role="button" class="add-new-list">
-			<i class="fa fa-plus-circle"></i>&nbsp;créer une liste
-		</a>
+		<div class="toggle-darkmode-newlist-group">
+			<a href="#" role="button" class="add-new-list">
+				<i class="fa fa-plus-circle"></i>&nbsp;créer une liste
+			</a>
+			<div class="toggle-darkmode">
+				<svg xmlns="http://www.w3.org/2000/svg" class="icon-sun-toggle-darkmode" width="17" height="17" viewBox="0 0 17 17">
+					<g id="Icon_feather-sun" data-name="Icon feather-sun" transform="translate(-0.5 -0.5)">
+						<path id="Tracé_6" data-name="Tracé 6" d="M17.318,13.909A3.409,3.409,0,1,1,13.909,10.5,3.409,3.409,0,0,1,17.318,13.909Z" transform="translate(-4.909 -4.909)" fill="none" stroke="#ccc" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+						<path id="Tracé_7" data-name="Tracé 7" d="M18,1.5V2.864" transform="translate(-9)" fill="none" stroke="#ccc" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+						<path id="Tracé_8" data-name="Tracé 8" d="M18,31.5v1.364" transform="translate(-9 -16.364)" fill="none" stroke="#ccc" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+						<path id="Tracé_9" data-name="Tracé 9" d="M6.33,6.33,7.3,7.3" transform="translate(-2.635 -2.635)" fill="none" stroke="#ccc" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+						<path id="Tracé_10" data-name="Tracé 10" d="M27.54,27.54l.968.968" transform="translate(-14.204 -14.204)" fill="none" stroke="#ccc" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+						<path id="Tracé_11" data-name="Tracé 11" d="M1.5,18H2.864" transform="translate(0 -9)" fill="none" stroke="#ccc" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+						<path id="Tracé_12" data-name="Tracé 12" d="M31.5,18h1.364" transform="translate(-16.364 -9)" fill="none" stroke="#ccc" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+						<path id="Tracé_13" data-name="Tracé 13" d="M6.33,28.508,7.3,27.54" transform="translate(-2.635 -14.204)" fill="none" stroke="#ccc" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+						<path id="Tracé_14" data-name="Tracé 14" d="M27.54,7.3l.968-.968" transform="translate(-14.204 -2.635)" fill="none" stroke="#ccc" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+					</g>
+				</svg>
+				<svg xmlns="http://www.w3.org/2000/svg" class="icon-moon-toggle-darkmode" width="13.406" height="15" viewBox="0 0 13.406 15">
+					<path id="Icon_awesome-moon" data-name="Icon awesome-moon" d="M9.413,15a7.486,7.486,0,0,0,5.826-2.777.352.352,0,0,0-.339-.567A5.875,5.875,0,0,1,10.894.777a.352.352,0,0,0-.11-.651A7.5,7.5,0,1,0,9.413,15Z" transform="translate(-1.913)" fill="#ccc"/>
+				</svg>
+				<input type="checkbox" name="ball-darkmode" id="ball-darkmode">
+				<label for="ball-darkmode"><span class="ball-darkmode"></span></label>
+			</div>
+		</div>
 		<div class="list-container">
 			<div class="card-list" id="new-list">
 				<a href="#" class="fa fa-close" role="button" data-dismiss="dialog"></a>
 				<form method="post" action="{{ path('liste_new') }}">
 					<div class="card-list-title">
 						<input type="text" class="input-title show" id="input-title-new-list" name="input-title" placeholder="Titre de la liste" value="Titre de la liste">
-						<button type="submit" class="show fa fa-save"></button>
+						<button type="submit" class="show"><i class="fa fa-save"></i></button>
 					</div>
 				</form>
 			</div>
@@ -30,7 +52,7 @@
 							<input type="text" name="input-title" class="input-title" placeholder="Titre de la liste" value="{{ liste.title }}">
 							<div class="button-action-group">
 								<a href="#" role="button" class="show fa fa-pencil"></a>
-								<button type="submit" class="fa fa-save"></button>
+								<button type="submit"><i class="fa fa-save"></i></button>
 								<a href="#" role="button" class="show fa fa-trash" data-target="#modal-delete-liste-{{ liste.id }}" data-toggle="modal"></a>
 							</div>
 						</div>

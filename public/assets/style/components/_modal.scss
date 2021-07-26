@@ -24,9 +24,9 @@
   text-align: center;
   padding: 20px;
   border-radius: 10px;
-  background-color: $color-f1f1f1;
-  box-shadow: 0 3px 6px var(--color-555555);
-  color: $color-323232;
+  background-color: var(--color-secondary-bg);
+  box-shadow: 3px 3px 6px $color-CCCCCC;
+  color: var(--color-primary-writing);
 }
 
 .modal-close{

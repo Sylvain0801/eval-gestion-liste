@@ -1,5 +1,5 @@
 // ######################################################
-// #                     Variables                      #
+// ###                    Variables                   ###
 // ######################################################
 
 // Fonts
@@ -8,18 +8,22 @@ $font-primary: 'Lato', sans-serif;
 $font-secondary: 'Open Sans', sans-serif;
 $font-app-name: 'Indie Flower', cursive;
 
-// Colors`
-:root {
-  --color-555555: #555555;
-}
+
+// Sizes
+$navbar-height: 60px;
+$navbar-height-mobile: 35px;
+
+// Constants colors theme
 $color-323232: #323232;
+$color-555555: #555555;
 $color-888888: #888888;
 $color-AAAAAA: #AAAAAA;
+$color-CCCCCC: #CCCCCC;
 $color-f1f1f1: #F1F1F1;
 $color-efefef: #EFEFEF;
 $color-f2f2f2: #F2F2F2;
 
-$color-white: #FFFFFF;
+$color-white: white;
 $color-black: #000000;
 $color-yellow: #F2B90C;
 $color-green: #238C2A;
@@ -27,8 +31,23 @@ $color-blue: #1835D9;
 $color-pink: #D50DD9;
 $color-red: #BF0B3B;
 
-// Sizes
-$navbar-height: 60px;
-$navbar-height-mobile: 35px;
+:root {
+  // Background colors theme
+  --color-primary-bg: white;
+  --color-secondary-bg: $color-f1f1f1;
+  --color-input-bg: white;
+
+  // Writing colors theme
+  --color-primary-writing: $color-323232;
+  --color-medium-writing: $color-555555;
+  --color-light-writing: $color-888888;
+
+  // Writing colors hover theme
+  --color-writing-hover: $color-555555;
+
+  // Border colors theme
+  --color-todo-border: $color-CCCCCC;
+}
+
 
 

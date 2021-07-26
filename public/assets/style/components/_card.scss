@@ -12,9 +12,9 @@
   border-radius: 10px;
   padding: 20px;
   margin: 0 20px 20px 0;
-  background-color: $color-f1f1f1;
-  box-shadow: 0 3px 6px var(--color-555555);
-  color: $color-323232;  
+  background-color: var(--color-secondary-bg);
+  box-shadow: 3px 3px 6px $color-888888;
+  color: var(--color-primary-writing); 
   &#new-list {
     display: none;
     &.show {
@@ -36,11 +36,13 @@
       padding: 0;
       margin-left: 5px;
       cursor: pointer;
+      background-color: transparent !important;
+      box-shadow: none;
     }
     button, a {
       font-size: 1.6rem;
       margin-left: 5px;
-      color: $color-323232;
+      color: var(--color-primary-writing);
       transition: all .3s ease-in-out;
       display: none;
       &.show {
@@ -48,13 +50,13 @@
       }
       &:hover {
         transform: scale(1.1);
-        color: var(--color-555555);
+        color: var(--color-writing-hover);
       }
     }
     h2 {
       width: calc(100% - 60px);
       font-size: 1.5rem;
-      font-weight: bold;
+      font-weight: 500;
       display: none;
       &.show {
         display: block;
@@ -84,9 +86,9 @@
 .card-todo {
   padding: 20px 10px 10px;
   margin-bottom: 10px;
-  box-shadow: 0 1px 3px $color-AAAAAA;
   border-radius: 4px;
-  background-color: $color-white;
+  border: 0.5px solid var(--color-todo-border);
+  background-color: var(--color-primary-bg);
   position: relative;
   .card-todo-color {
     width: 100%;
@@ -101,8 +103,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 5px;
     h3 {
       font-size: .9rem;
+      font-weight: 500;
     }
     .button-action-group {
       button {
@@ -114,7 +118,7 @@
       button, a {
         font-size: 1.1rem;
         margin-left: 5px;
-        color: $color-323232;
+        color: var(--color-primary-writing);
         transition: all .3s ease-in-out;
         display: none;
         &.show {
@@ -122,7 +126,7 @@
         }
         &:hover {
           transform: scale(1.1);
-          color: var(--color-555555);
+          color: var(--color-writing-hover);
         }
       }
     }
@@ -132,13 +136,13 @@
     font-size: .9rem;
     text-align: justify;
     color: $color-888888;
-    max-height: 100px;
+    max-height: 50px;
     overflow-y: auto;
   }
   .card-todo-footer {
     font-size: .8rem;
-    font-weight: bold;
-    color: var(--color-555555);
+    font-weight: 500;
+    color: var(--color-medium-writing);
     margin-top: 5px;
     display: flex;
     align-items: center;
