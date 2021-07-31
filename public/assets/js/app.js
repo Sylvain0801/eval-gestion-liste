@@ -40,6 +40,19 @@ window.onload = () => {
       // On récupère le data-target
       let target = this.dataset.target;
 
+      // On renseigne les champs variables de la modale
+      // Si on doit afficher la modale de confirmation delete 
+      if (target === '#modal-delete') {
+        let textModal = document.querySelector(target + ' p')
+        if (textModal) {
+          textModal.innerHTML = this.dataset.message;
+        }
+        let buttonTrash = document.querySelector(target + ' a.button.button-red')
+        if (buttonTrash) {
+          buttonTrash.href = this.dataset.path
+        }
+      }
+
       // On récupère la bonne modale
       let modal = document.querySelector(target);
 
@@ -76,57 +89,33 @@ window.onload = () => {
   }
 
   // Darkmode
+  const toggleDarkMode = document.getElementById("ball-darkmode");
+
   const darkMode = () => {
-    document.documentElement.style.setProperty("--color-primary-bg", "#323232");
-    document.documentElement.style.setProperty(
-      "--color-secondary-bg",
-      "#555555"
-    );
-    document.documentElement.style.setProperty(
-      "--color-primary-writing",
-      "#F1F1F1"
-    );
-    document.documentElement.style.setProperty(
-      "--color-medium-writing",
-      "#CCCCCC"
-    );
-    document.documentElement.style.setProperty(
-      "--color-writing-hover",
-      "#CCCCCC"
-    );
-    document.documentElement.style.setProperty(
-      "--color-todo-border",
-      "#888888"
-    );
-    document.documentElement.style.setProperty("--color-input-bg", "#CCCCCC");
+    const colors = {
+      "--color-primary-bg": "#323232",
+      "--color-secondary-bg": "#555555",
+      "--color-primary-writing": "#F1F1F1",
+      "--color-medium-writing": "#CCCCCC",
+      "--color-writing-hover": "#CCCCCC",
+      "--color-todo-border": "#888888",
+      "--color-input-bg": "#CCCCCC"
+    }
+    for (const key in colors) document.documentElement.style.setProperty(key, colors[key])
   };
 
   const ligthMode = () => {
-    document.documentElement.style.setProperty("--color-primary-bg", "white");
-    document.documentElement.style.setProperty(
-      "--color-secondary-bg",
-      "#F1F1F1"
-    );
-    document.documentElement.style.setProperty(
-      "--color-primary-writing",
-      "#323232"
-    );
-    document.documentElement.style.setProperty(
-      "--color-medium-writing",
-      "#555555"
-    );
-    document.documentElement.style.setProperty(
-      "--color-writing-hover",
-      "#555555"
-    );
-    document.documentElement.style.setProperty(
-      "--color-todo-border",
-      "#CCCCCC"
-    );
-    document.documentElement.style.setProperty("--color-input-bg", "#FFFFFF");
+    const colors = {
+      "--color-primary-bg": "white",
+      "--color-secondary-bg": "#F1F1F1",
+      "--color-primary-writing": "#323232",
+      "--color-medium-writing": "#555555",
+      "--color-writing-hover": "#555555",
+      "--color-todo-border": "#CCCCCC",
+      "--color-input-bg": "#FFFFFF"
+    }
+    for (const key in colors) document.documentElement.style.setProperty(key, colors[key])
   };
-
-  const toggleDarkMode = document.getElementById("ball-darkmode");
 
   const theme = () => {
     if (localStorage.getItem("theme")) {
@@ -226,6 +215,5 @@ window.onload = () => {
         cardPosition()
       }
     })
-    
   }
 };

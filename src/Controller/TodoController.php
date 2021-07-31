@@ -29,6 +29,7 @@ class TodoController extends AbstractController
         }
 
         $liste = $this->getDoctrine()->getRepository(Liste::class)->findOneBy(['id' => $id]);
+        $titleListe = $liste->getTitle();
         $status = $this->getDoctrine()->getRepository(Status::class)->findOneBy(['id' => $request->get("statuses_new_$id")]);
         $color = $this->getDoctrine()->getRepository(Color::class)->findOneBy(['id' => $request->get("colors_new_$id")]);
 
@@ -44,7 +45,7 @@ class TodoController extends AbstractController
         $em->persist($todo);
         $em->flush();
 
-        $this->addFlash('message_alert', "La tâche &ldquo;$title&rdquo; a été créée avec succès");
+        $this->addFlash('message_alert', "La tâche &ldquo;$title&rdquo; de la liste &ldquo;$titleListe&rdquo; a été créée avec succès");
         return $this->redirectToRoute('liste_index', [], Response::HTTP_SEE_OTHER);
         
     }
@@ -63,6 +64,7 @@ class TodoController extends AbstractController
         }
 
         $liste = $todo->getListe();
+        $titleListe = $liste->getTitle();
         $status = $this->getDoctrine()->getRepository(Status::class)->findOneBy(['id' => $request->get("statuses_edit_$id")]);
         $color = $this->getDoctrine()->getRepository(Color::class)->findOneBy(['id' => $request->get("colors_edit_$id")]);
 
@@ -78,7 +80,7 @@ class TodoController extends AbstractController
         $em->persist($liste);
         $em->flush();
 
-        $this->addFlash('message_alert', "La tâche &ldquo;$title&rdquo; a été modifiée avec succès");
+        $this->addFlash('message_alert', "La tâche &ldquo;$title&rdquo; de la liste &ldquo;$titleListe&rdquo; a été modifiée avec succès");
         return $this->redirectToRoute('liste_index', [], Response::HTTP_SEE_OTHER);
     }
 
@@ -88,7 +90,8 @@ class TodoController extends AbstractController
     public function delete(Todo $todo): RedirectResponse
     {
         $title = $todo->getTitle();
-        $this->addFlash('message_alert', "La tâche &ldquo;$title&rdquo; a été supprimée avec succès");
+        $titleListe = $todo->getListe()->getTitle();
+        $this->addFlash('message_alert', "La tâche &ldquo;$title&rdquo; de la liste &ldquo;$titleListe&rdquo; a été supprimée avec succès");
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($todo);

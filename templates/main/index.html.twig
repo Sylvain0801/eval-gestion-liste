@@ -55,7 +55,7 @@
 									<div class="button-action-group">
 										<a href="#" role="button" class="show fa fa-pencil"></a>
 										<button type="submit"><i class="fa fa-save"></i></button>
-										<a href="#" role="button" class="show fa fa-trash" data-target="#modal-delete-liste-{{ listes[k].id }}" data-toggle="modal"></a>
+										<a href="#" role="button" class="show fa fa-trash" data-target="#modal-delete" data-toggle="modal" data-message="La liste &ldquo;{{ listes[k].title }}&rdquo; va être définitivement supprimée, cette action est irréversible." data-path="{{ path( 'liste_delete', {id: listes[k].id}) }}"></a>
 									</div>
 								</div>
 							</form>
@@ -92,7 +92,7 @@
 											<h3 class="todo-title">{{ todo.title }}</h3>
 											<div class="button-action-group">
 												<a href="#" role="button" class="show fa fa-pencil" data-target="#modal-edit-todo-{{ todo.id }}" data-toggle="modal"></a>
-												<a href="#" role="button" class="show fa fa-trash" data-target="#modal-delete-todo-{{ todo.id }}" data-toggle="modal"></a>
+												<a href="#" role="button" class="show fa fa-trash" data-target="#modal-delete" data-toggle="modal" data-message="La tâche &ldquo;{{ todo.title }}&rdquo; va être définitivement supprimée, cette action est irréversible." data-path="{{ path( 'todo_delete', {id: todo.id}) }}"></a>
 											</div>
 										</div>
 										<p class="card-todo-content">{{ todo.description }}</p>
@@ -103,18 +103,15 @@
 									<!-- Modal edit todo -->
 										{{ include ('include/_form_todo.html.twig', {id: todo.id, todo: todo, path: 'edit', colors: colors, statuses: statuses}) }}
 									<!-- End modal edit todo -->
-									<!-- Modal confirm delete todo -->
-									{{ include ('include/_modal_delete.html.twig', {id: todo.id, path: 'todo', text: 'tâche', name: todo.title}) }}
-									<!-- End modal confirm delete todo -->
 								{% endfor %}
 							</div>
-							<!-- Modal confirm delete list -->
-							{{ include ('include/_modal_delete.html.twig', {id: listes[k].id, path: 'liste', text: 'liste', name: listes[k].title}) }}
-							<!-- End Modal confirm delete list -->
 						</div>
 					</div>
 				{% endfor %}
 			</div>
 		</div>
 	</div>
+	<!-- Modal confirm delete list -->
+	{{ include ('include/_modal_delete.html.twig') }}
+	<!-- End Modal confirm delete list -->
 {% endblock %}
