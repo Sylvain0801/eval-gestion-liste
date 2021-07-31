@@ -1,10 +1,10 @@
 .modal{
   background-color: transparentize($color-323232, .25);
   position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  top: -10000px;
+  right: -10000px;
+  bottom: -10000px;
+  left: -10000px;
   z-index: 90000;
   display: none;
   visibility: hidden;

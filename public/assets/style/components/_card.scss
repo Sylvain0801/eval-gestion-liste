@@ -2,16 +2,26 @@
 .list-container {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  // flex-wrap: wrap;
 }
+.card-grid {
+  width: 100%;
+}
+.card-container {
+  width: fit-content;
+  height: calc(75vh + 40px);
+  padding: 0 20px 20px 0;
+  transition: transform .3s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
 .card-list {
   width: 300px;
   min-height: 40px;
   max-height: 75vh;
+  cursor: move;
   height: fit-content;
   border-radius: 10px;
   padding: 20px;
-  margin: 0 20px 20px 0;
   background-color: var(--color-secondary-bg);
   box-shadow: 3px 3px 6px $color-888888;
   color: var(--color-primary-writing); 
@@ -43,7 +53,7 @@
       font-size: 1.6rem;
       margin-left: 5px;
       color: var(--color-primary-writing);
-      transition: all .3s ease-in-out;
+      transition: transform color .3s ease-in-out;
       display: none;
       &.show {
         display: inline-block;
@@ -77,12 +87,18 @@
       }
     }
   }
+  &.hovered {
+    transform: scale(1.05);
+  }
 }
+
 // card todo
 .todo-container {
   max-height: calc(75vh - 145px);
   overflow-y: auto;
+  padding-right: 5px;
 }
+
 .card-todo {
   padding: 20px 10px 10px;
   margin-bottom: 10px;
@@ -119,7 +135,7 @@
         font-size: 1.1rem;
         margin-left: 5px;
         color: var(--color-primary-writing);
-        transition: all .3s ease-in-out;
+        transition: transform color .3s ease-in-out;
         display: none;
         &.show {
           display: inline-block;
@@ -138,6 +154,7 @@
     color: $color-888888;
     max-height: 50px;
     overflow-y: auto;
+    padding-right: 5px;
   }
   .card-todo-footer {
     font-size: .8rem;

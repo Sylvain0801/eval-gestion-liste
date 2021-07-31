@@ -44,73 +44,77 @@
 					</div>
 				</form>
 			</div>
-			{% for liste in listes %}
-				<div class="card-list">
-					<form method="post" action="{{ path('liste_edit', {id: liste.id}) }}">
-						<div class="card-list-title">
-							<h2 class="list-title show">{{ liste.title }}</h2>
-							<input type="text" name="input-title" class="input-title" placeholder="Titre de la liste" value="{{ liste.title }}">
-							<div class="button-action-group">
-								<a href="#" role="button" class="show fa fa-pencil"></a>
-								<button type="submit"><i class="fa fa-save"></i></button>
-								<a href="#" role="button" class="show fa fa-trash" data-target="#modal-delete-liste-{{ liste.id }}" data-toggle="modal"></a>
-							</div>
-						</div>
-					</form>
-					<a href="#" role="button" class="add-new-todo" data-target="#modal-new-todo-{{ liste.id }}" data-toggle="modal">
-						<i class="fa fa-plus-circle"></i>&nbsp;créer une tâche
-					</a>
-					<!-- Modal add new todo -->
-					{{ include ('include/_form_todo.html.twig', {id: liste.id, path: 'new', colors: colors, statuses: statuses}) }}
-					<!-- end modal add new todo -->
-					<div class="progressbar-group">
-						{% set finished = 0 %}
-						{% if liste.todos|length > 0 %}
-							{% for todo in liste.todos %}
-								{% if todo.status.name == 'Terminé' %}
-									{% set finished = finished + 1 %}
-								{% endif %}
-							{% endfor %}
-						{% endif %}
-						{% if liste.todos|length > 0 %}
-							{% set progression = finished / (liste.todos|length) * 100 %}
-						{% else %}
-							{% set progression = 0 %}
-						{% endif %}
-						<p class="progressbar-text">{{ progression|format_number({rounding_mode: 'floor', fraction_digit: 0}) }}% réalisé</p>
-						<div class="progressbar-content">
-							<span class="progressbar-progression" style="width: {{ progression~'%' }}"></span>
-						</div>
-					</div>
-					<div class="todo-container">
-						{% for todo in liste.todos %}
-							<div class="card-todo">
-								<div class="card-todo-color" style="background-color: {{ todo.color.codeHex }};"></div>
-								<div class="card-todo-title">
-									<h3 class="todo-title">{{ todo.title }}</h3>
+			<div class="card-grid">
+				{% for k in listes|keys %}
+					<div class="card-container" id="card-{{ k }}" data-position="{{ k }}" data-id="{{ k }}" draggable="true">
+						<div class="card-list">
+							<form method="post" action="{{ path('liste_edit', {id: listes[k].id}) }}">
+								<div class="card-list-title">
+									<h2 class="list-title show">{{ listes[k].title }}</h2>
+									<input type="text" name="input-title" class="input-title" placeholder="Titre de la liste" value="{{ listes[k].title }}">
 									<div class="button-action-group">
-										<a href="#" role="button" class="show fa fa-pencil" data-target="#modal-edit-todo-{{ todo.id }}" data-toggle="modal"></a>
-										<a href="#" role="button" class="show fa fa-trash" data-target="#modal-delete-todo-{{ todo.id }}" data-toggle="modal"></a>
+										<a href="#" role="button" class="show fa fa-pencil"></a>
+										<button type="submit"><i class="fa fa-save"></i></button>
+										<a href="#" role="button" class="show fa fa-trash" data-target="#modal-delete-liste-{{ listes[k].id }}" data-toggle="modal"></a>
 									</div>
 								</div>
-								<p class="card-todo-content">{{ todo.description }}</p>
-								<div class="card-todo-footer">
-									{{ todo.status.name }}<span style="background-color: {{ todo.status.color }};"></span>
+							</form>
+							<a href="#" role="button" class="add-new-todo" data-target="#modal-new-todo-{{ listes[k].id }}" data-toggle="modal">
+								<i class="fa fa-plus-circle"></i>&nbsp;créer une tâche
+							</a>
+							<!-- Modal add new todo -->
+							{{ include ('include/_form_todo.html.twig', {id: listes[k].id, path: 'new', colors: colors, statuses: statuses}) }}
+							<!-- end modal add new todo -->
+							<div class="progressbar-group">
+								{% set finished = 0 %}
+								{% if listes[k].todos|length > 0 %}
+									{% for todo in listes[k].todos %}
+										{% if todo.status.name == 'Terminé' %}
+											{% set finished = finished + 1 %}
+										{% endif %}
+									{% endfor %}
+								{% endif %}
+								{% if listes[k].todos|length > 0 %}
+									{% set progression = finished / (listes[k].todos|length) * 100 %}
+								{% else %}
+									{% set progression = 0 %}
+								{% endif %}
+								<p class="progressbar-text">{{ progression|format_number({rounding_mode: 'floor', fraction_digit: 0}) }}% réalisé</p>
+								<div class="progressbar-content">
+									<span class="progressbar-progression" style="width: {{ progression~'%' }}"></span>
 								</div>
 							</div>
-							<!-- Modal edit todo -->
-								{{ include ('include/_form_todo.html.twig', {id: todo.id, todo: todo, path: 'edit', colors: colors, statuses: statuses}) }}
-							<!-- End modal edit todo -->
-							<!-- Modal confirm delete todo -->
-							{{ include ('include/_modal_delete.html.twig', {id: todo.id, path: 'todo', text: 'tâche', name: todo.title}) }}
-							<!-- End modal confirm delete todo -->
-						{% endfor %}
+							<div class="todo-container">
+								{% for todo in listes[k].todos %}
+									<div class="card-todo">
+										<div class="card-todo-color" style="background-color: {{ todo.color.codeHex }};"></div>
+										<div class="card-todo-title">
+											<h3 class="todo-title">{{ todo.title }}</h3>
+											<div class="button-action-group">
+												<a href="#" role="button" class="show fa fa-pencil" data-target="#modal-edit-todo-{{ todo.id }}" data-toggle="modal"></a>
+												<a href="#" role="button" class="show fa fa-trash" data-target="#modal-delete-todo-{{ todo.id }}" data-toggle="modal"></a>
+											</div>
+										</div>
+										<p class="card-todo-content">{{ todo.description }}</p>
+										<div class="card-todo-footer">
+											{{ todo.status.name }}<span style="background-color: {{ todo.status.color }};"></span>
+										</div>
+									</div>
+									<!-- Modal edit todo -->
+										{{ include ('include/_form_todo.html.twig', {id: todo.id, todo: todo, path: 'edit', colors: colors, statuses: statuses}) }}
+									<!-- End modal edit todo -->
+									<!-- Modal confirm delete todo -->
+									{{ include ('include/_modal_delete.html.twig', {id: todo.id, path: 'todo', text: 'tâche', name: todo.title}) }}
+									<!-- End modal confirm delete todo -->
+								{% endfor %}
+							</div>
+							<!-- Modal confirm delete list -->
+							{{ include ('include/_modal_delete.html.twig', {id: listes[k].id, path: 'liste', text: 'liste', name: listes[k].title}) }}
+							<!-- End Modal confirm delete list -->
+						</div>
 					</div>
-					<!-- Modal confirm delete list -->
-					{{ include ('include/_modal_delete.html.twig', {id: liste.id, path: 'liste', text: 'liste', name: liste.title}) }}
-					<!-- End Modal confirm delete list -->
-				</div>
-			{% endfor %}
+				{% endfor %}
+			</div>
 		</div>
 	</div>
 {% endblock %}

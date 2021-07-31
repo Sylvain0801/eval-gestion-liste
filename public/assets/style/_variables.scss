@@ -33,9 +33,9 @@ $color-red: #BF0B3B;
 
 :root {
   // Background colors theme
-  --color-primary-bg: white;
+  --color-primary-bg: $color-white;
   --color-secondary-bg: $color-f1f1f1;
-  --color-input-bg: white;
+  --color-input-bg: $color-white;
 
   // Writing colors theme
   --color-primary-writing: $color-323232;

@@ -9,15 +9,19 @@
   align-items: center;
   justify-content: space-evenly;
   position: relative;
+
   .icon-sun-toggle-darkmode {
     margin: 0 2px;
   }
+
   .icon-moon-toggle-darkmode {
     margin: 0 3.8px;
   }
+
   input[type="checkbox"]#ball-darkmode {
     display: none;
   }
+
   span.ball-darkmode {
     position: absolute;
     height: 20px;
@@ -30,6 +34,7 @@
     transition: left .2s ease-in-out;
     cursor: pointer;
   }
+  
   input[type="checkbox"]#ball-darkmode:checked + label span.ball-darkmode {
     left: 21px;
   }

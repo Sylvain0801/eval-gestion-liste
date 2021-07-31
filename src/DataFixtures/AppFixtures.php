@@ -47,13 +47,14 @@ class AppFixtures extends Fixture
             $manager->persist($status);
         }
 
-        for ($i = 1; $i <= 8; $i++) { 
+        for ($i = 1; $i <= 12; $i++) { 
             
             $list = new Liste();
             $list->setTitle("Liste numéro $i");
             $list->setUpdated_at(new DateTimeImmutable());
             $nbTodos = rand(1, 10);
             for ($j = 1; $j <= $nbTodos; $j++) { 
+                $i < 7 ? $index = $i : $index = $i - 6;
                 $todo = new Todo();
                 $todo
                     ->setTitle("Tâche numéro $j")
@@ -61,7 +62,7 @@ class AppFixtures extends Fixture
                     Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy')
                     ->setListe($list)
                     ->setStatus($this->getReference('status_'.rand(1,4)))
-                    ->setColor($this->getReference('color_'.rand(1, 5)));
+                    ->setColor($this->getReference("color_$index"));
                 $manager->persist($todo);
             }
             $manager->persist($list);
