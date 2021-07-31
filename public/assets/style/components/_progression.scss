@@ -7,6 +7,11 @@
     text-align: right;
     margin-bottom: 5px;
   }
+  .progressbar-infos {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
   .progressbar-content {
     width: 100%;
     height: 10px;

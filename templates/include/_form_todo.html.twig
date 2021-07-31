@@ -1,24 +1,19 @@
-<div class="modal" id="{{ 'modal-'~path~'-todo-'~id }}" role="dialog">
+<div class="modal" id="modal-todo" role="dialog">
   <div class="todo-form">
     <a href="#" class="modal-close fa fa-close" role="button" data-dismiss="dialog"></a>
-    <form action="{{ path('todo_'~path, {id: id}) }}" method="post">
-      <label for="todo-title">titre</label>
-      <input type="text" name="{{ path~'_todo_title_'~id }}" id="{{ path~'_todo_title_'~id }}" class="todo-form-control" placeholder="Entrez un titre..." value="{{ todo is defined ? todo.title : '' }}" required>
+    <form action="" method="post">
+      <label for="todo_title">titre</label>
+      <input type="text" id="todo_title" name="todo_title" class="todo-form-control" placeholder="Entrez un titre..." required>
       <label for="todo-description">description</label>
-      <textarea name="{{ path~'_todo_description_'~id }}" id="{{ path~'_todo_description_'~id }}" class="todo-form-control" placeholder="Ecrivez une description de la nouvelle tâche..." required>{{ todo is defined ? todo.description : '' }}</textarea>
+      <textarea id="todo_description" name="todo_description" class="todo-form-control" placeholder="Ecrivez une description de la nouvelle tâche..." required></textarea>
       <div class="status-color-group">
         <div class="status-group">
           <label>statut</label>
           <div class="button-radio-group">
-            {% if todo is defined %}
-              {% set status_checked = todo.status.name %}
-            {% else %}
-              {% set status_checked = 'À venir' %}
-            {% endif %}
-            {% for status in statuses %}
+            {% for k, status in statuses %}
               <div class="inline-radio-item">
-                <input type="radio" name="{{ 'statuses_'~path~'_'~id }}" id="{{ 'statuses_'~path~'_'~id~'_status_'~status.id }}" value="{{ status.id }}" {{ status.name == status_checked ? 'checked' : '' }}>
-                <label for="{{ 'statuses_'~path~'_'~id~'_status_'~status.id }}" class="todo-custom-input"><span></span></label>
+                <input type="radio" name="statuses" id="status_{{ k + 1 }}" value="{{ status.id }}">
+                <label for="status_{{ k + 1 }}" class="todo-custom-input"><span></span></label>
                 <span class="status-color" style="background-color: {{ status.color }};"></span>
                 <label>{{ status.name }}</label>
               </div>
@@ -28,14 +23,9 @@
         <div class="color-group">
           <label>couleur</label>
           <div class="button-color-group">
-            {% if todo is defined %}
-              {% set color_checked = todo.color.name %}
-            {% else %}
-              {% set color_checked = 'white' %}
-            {% endif %}
-            {% for color in colors %}
-              <input type="radio" name="{{ 'colors_'~path~'_'~id }}" id="{{ 'colors_'~path~'_'~id~'_color_'~color.id }}" value="{{ color.id }}" {{ color.name == color_checked ? 'checked' :'' }}>
-              <label for="{{ 'colors_'~path~'_'~id~'_color_'~color.id }}" class="todo-custom-input" style="background-color: {{ color.codeHex }};">
+            {% for k, color in colors %}
+              <input type="radio" name="colors" id="color_{{ k + 1 }}" value="{{ color.id }}">
+              <label for="color_{{ k + 1 }}" class="todo-custom-input" style="background-color: {{ color.codeHex }};">
                 <div class="headband" style="background-color: {{ color.codeHex }};">
                   <h1><i class="bi bi-clipboard-data"></i>&nbsp;repositionnable</h1>
                 </div>

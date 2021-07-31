@@ -59,12 +59,9 @@
 									</div>
 								</div>
 							</form>
-							<a href="#" role="button" class="add-new-todo" data-target="#modal-new-todo-{{ listes[k].id }}" data-toggle="modal">
+							<a href="#" role="button" class="add-new-todo" data-target="#modal-todo" data-toggle="modal" data-action="{{ path('todo_new', {id: listes[k].id}) }}">
 								<i class="fa fa-plus-circle"></i>&nbsp;créer une tâche
 							</a>
-							<!-- Modal add new todo -->
-							{{ include ('include/_form_todo.html.twig', {id: listes[k].id, path: 'new', colors: colors, statuses: statuses}) }}
-							<!-- end modal add new todo -->
 							<div class="progressbar-group">
 								{% set finished = 0 %}
 								{% if listes[k].todos|length > 0 %}
@@ -79,7 +76,10 @@
 								{% else %}
 									{% set progression = 0 %}
 								{% endif %}
-								<p class="progressbar-text">{{ progression|format_number({rounding_mode: 'floor', fraction_digit: 0}) }}% réalisé</p>
+								<div class="progressbar-infos">
+									<p class="progressbar-text">{{ finished }} / {{ listes[k].todos|length }}</p>
+									<p class="progressbar-text">{{ progression|format_number({rounding_mode: 'floor', fraction_digit: 0}) }}% réalisé</p>
+								</div>
 								<div class="progressbar-content">
 									<span class="progressbar-progression" style="width: {{ progression~'%' }}"></span>
 								</div>
@@ -91,7 +91,7 @@
 										<div class="card-todo-title">
 											<h3 class="todo-title">{{ todo.title }}</h3>
 											<div class="button-action-group">
-												<a href="#" role="button" class="show fa fa-pencil" data-target="#modal-edit-todo-{{ todo.id }}" data-toggle="modal"></a>
+												<a href="#" role="button" class="show fa fa-pencil" data-target="#modal-todo" data-toggle="modal" data-action="{{ path('todo_edit', {id: todo.id}) }}" data-title="{{ todo.title }}" data-description="{{ todo.description }}" data-status="{{ todo.status.id }}" data-color="{{ todo.color.id }}"></a>
 												<a href="#" role="button" class="show fa fa-trash" data-target="#modal-delete" data-toggle="modal" data-message="La tâche &ldquo;{{ todo.title }}&rdquo; va être définitivement supprimée, cette action est irréversible." data-path="{{ path( 'todo_delete', {id: todo.id}) }}"></a>
 											</div>
 										</div>
@@ -100,9 +100,6 @@
 											{{ todo.status.name }}<span style="background-color: {{ todo.status.color }};"></span>
 										</div>
 									</div>
-									<!-- Modal edit todo -->
-										{{ include ('include/_form_todo.html.twig', {id: todo.id, todo: todo, path: 'edit', colors: colors, statuses: statuses}) }}
-									<!-- End modal edit todo -->
 								{% endfor %}
 							</div>
 						</div>
@@ -113,5 +110,6 @@
 	</div>
 	<!-- Modal confirm delete list -->
 	{{ include ('include/_modal_delete.html.twig') }}
-	<!-- End Modal confirm delete list -->
+	<!-- Modal new/edit todo -->
+	{{ include ('include/_form_todo.html.twig', {colors: colors, statuses: statuses}) }}
 {% endblock %}

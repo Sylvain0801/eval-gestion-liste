@@ -21,8 +21,8 @@ class TodoController extends AbstractController
      */
     public function new($id, Request $request): Response
     {
-        $title = $request->get("new_todo_title_$id");
-        $description = $request->get("new_todo_description_$id");
+        $title = $request->get("todo_title");
+        $description = $request->get("todo_description");
 
         if (empty($title) || empty($description)) {
             return $this->redirectToRoute('liste_index', [], Response::HTTP_SEE_OTHER);
@@ -30,8 +30,8 @@ class TodoController extends AbstractController
 
         $liste = $this->getDoctrine()->getRepository(Liste::class)->findOneBy(['id' => $id]);
         $titleListe = $liste->getTitle();
-        $status = $this->getDoctrine()->getRepository(Status::class)->findOneBy(['id' => $request->get("statuses_new_$id")]);
-        $color = $this->getDoctrine()->getRepository(Color::class)->findOneBy(['id' => $request->get("colors_new_$id")]);
+        $status = $this->getDoctrine()->getRepository(Status::class)->findOneBy(['id' => $request->get("statuses")]);
+        $color = $this->getDoctrine()->getRepository(Color::class)->findOneBy(['id' => $request->get("colors")]);
 
         $todo = new Todo();
         $todo
@@ -56,8 +56,8 @@ class TodoController extends AbstractController
     public function edit(Request $request, Todo $todo): Response
     {
         $id = $todo->getId();
-        $title = $request->get("edit_todo_title_$id");
-        $description = $request->get("edit_todo_description_$id");
+        $title = $request->get("todo_title");
+        $description = $request->get("todo_description");
 
         if (empty($title) || empty($description)) {
             return $this->redirectToRoute('liste_index', [], Response::HTTP_SEE_OTHER);
@@ -65,8 +65,8 @@ class TodoController extends AbstractController
 
         $liste = $todo->getListe();
         $titleListe = $liste->getTitle();
-        $status = $this->getDoctrine()->getRepository(Status::class)->findOneBy(['id' => $request->get("statuses_edit_$id")]);
-        $color = $this->getDoctrine()->getRepository(Color::class)->findOneBy(['id' => $request->get("colors_edit_$id")]);
+        $status = $this->getDoctrine()->getRepository(Status::class)->findOneBy(['id' => $request->get("statuses")]);
+        $color = $this->getDoctrine()->getRepository(Color::class)->findOneBy(['id' => $request->get("colors")]);
 
         $todo
             ->setTitle($title)

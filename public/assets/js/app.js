@@ -8,7 +8,7 @@ window.onload = () => {
     newList.classList.add("show");
   });
 
-  const btnEdit = document.querySelectorAll(".show.fa.fa-pencil");
+  const btnEdit = document.querySelectorAll(".card-list-title .show.fa.fa-pencil");
   // Edite le titre de la liste
   for (const btn of btnEdit) {
     btn.addEventListener("click", function (e) {
@@ -43,16 +43,18 @@ window.onload = () => {
       // On renseigne les champs variables de la modale
       // Si on doit afficher la modale de confirmation delete 
       if (target === '#modal-delete') {
-        let textModal = document.querySelector(target + ' p')
-        if (textModal) {
-          textModal.innerHTML = this.dataset.message;
-        }
-        let buttonTrash = document.querySelector(target + ' a.button.button-red')
-        if (buttonTrash) {
-          buttonTrash.href = this.dataset.path
-        }
+        document.querySelector(target + ' p').innerHTML = this.dataset.message;
+        document.querySelector(target + ' a.button.button-red').href = this.dataset.path
       }
 
+      // Si on doit afficher la modale de création/modification des todos
+      if (target === '#modal-todo') {
+        document.querySelector(target + ' form').setAttribute('action', this.dataset.action)
+        document.querySelector(target + ' input[type=text]').value = (this.dataset.title ?  this.dataset.title : "")
+        document.querySelector(target + ' textarea').value = (this.dataset.description ?  this.dataset.description : "")
+        this.dataset.status ? document.getElementById('status_' + this.dataset.status).setAttribute('checked', 'checked') : document.getElementById('status_1').setAttribute('checked', 'checked')
+        this.dataset.color ? document.getElementById('color_' + this.dataset.color).setAttribute('checked', 'checked') : document.getElementById('color_1').setAttribute('checked', 'checked')
+      }
       // On récupère la bonne modale
       let modal = document.querySelector(target);
 
@@ -151,9 +153,7 @@ window.onload = () => {
   const grid = []
   
   const createGrid = () => {
-    for (let i = 0; i < cards.length; i++) {
-      grid[i] = i
-    }
+    for (let i = 0; i < cards.length; i++) grid[i] = i
     return grid
   }
   createGrid()

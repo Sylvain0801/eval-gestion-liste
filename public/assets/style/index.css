@@ -233,7 +233,7 @@ header .app-name h1 {
 }
 
 .card-list {
-  width: 300px;
+  width: 280px;
   min-height: 40px;
   max-height: 75vh;
   cursor: move;
@@ -250,6 +250,7 @@ header .app-name h1 {
 
 .card-list#new-list {
   display: none;
+  margin: 0 20px 20px 0;
 }
 
 .card-list#new-list.show {
@@ -349,6 +350,7 @@ header .app-name h1 {
   padding: 20px 10px 10px;
   margin-bottom: 10px;
   border-radius: 4px;
+  cursor: initial;
   border: 0.5px solid var(--color-todo-border);
   background-color: var(--color-primary-bg);
   position: relative;
@@ -521,6 +523,18 @@ header .app-name h1 {
   font-size: .8rem;
   text-align: right;
   margin-bottom: 5px;
+}
+
+.progressbar-group .progressbar-infos {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .progressbar-group .progressbar-content {
